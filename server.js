@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express=require('express'),Database=require('better-sqlite3'),bcrypt=require('bcryptjs'),jwt=require('jsonwebtoken'),rateLimit=require('express-rate-limit'),helmet=require('helmet');
-const SECRET=process.env.JWT_SECRET;if(!SECRET){console.error('Set JWT_SECRET in .env');process.exit(1)}
+const SECRET=process.env.JWT_SECRET||require('crypto').randomBytes(32).toString('hex');if(!process.env.JWT_SECRET)console.warn('WARNING: JWT_SECRET not set. Using a temporary secret; users must log in again after each restart. Set JWT_SECRET in Render Environment.');
 const db=new Database(process.env.DB_PATH||'./smartmarket.db');db.pragma('foreign_keys=ON');
 db.exec(`CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY,name TEXT NOT NULL,email TEXT NOT NULL UNIQUE,phone TEXT NOT NULL UNIQUE,password TEXT NOT NULL,location TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY,seller_id INTEGER NOT NULL REFERENCES users(id),title TEXT NOT NULL,description TEXT,category TEXT,brand TEXT,price INTEGER NOT NULL,condition TEXT,location TEXT,status TEXT DEFAULT 'Active',created_at TEXT DEFAULT CURRENT_TIMESTAMP);`);
