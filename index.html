@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>SmartMarket AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css"></head><body>
+<header><div class="w" id="gr" style="padding-top:8px;font-weight:600;color:var(--ac)"></div><div class="w nav"><div class="logo" onclick="go('home')">SmartMarket <b>AI</b></div>
+<div class="links" id="links"></div><button id="th" aria-label="Toggle theme">◐</button><button class="p" id="lg">Log in</button></div><div class="w chips" id="chips"></div></header>
+<main class="w" id="app">
+<section class="view" id="home"><div class="hero"><h1>Sell Smarter. Buy Better. Powered by AI.</h1>
+<p>Upload a photo and let AI create your product listing, suggest the right price, and check it for prohibited or suspicious items.</p>
+<div class="sb"><input id="hq" placeholder="What are you looking for?" aria-label="Search"><button onclick="vs()" title="Search by image">📷</button><button class="p" onclick="go('browse',$('#hq').value)">Search</button></div>
+<button class="p" onclick="go('sell')">Sell with AI</button> <button onclick="go('browse')">Explore Marketplace</button></div>
+<h2>Categories</h2><div class="cats" id="cats"></div><h2 id="recT">Recommended for you</h2><div class="mu" id="recW"></div><div class="grid" id="rec"></div></section>
+<section class="view" id="browse"><h2>Marketplace</h2><div class="filters">
+<input id="q" placeholder="Search products"><select id="fc"></select><select id="fk"><option value="">Any condition</option><option>New</option><option>Used – Good</option><option>Used – Fair</option></select>
+<select id="fl"></select><input id="fp" type="number" placeholder="Max price ₹"><select id="so"><option value="rel">Relevance</option><option value="new">Newest</option><option value="lo">Price: Low to High</option><option value="hi">Price: High to Low</option></select>
+<button onclick="$('#pl').classList.toggle('list')">Grid / List</button></div><div id="vsn"></div><div class="grid" id="pl"></div></section>
+<section class="view" id="sell"><h2>Sell with AI</h2><div id="sellBody"></div></section>
+<section class="view" id="dash"><h2>Seller dashboard</h2><div class="stat" id="stat"></div>
+<div class="row2"><div class="panel"><b>Views this week</b><svg id="ch" viewBox="0 0 280 110" width="100%"></svg></div>
+<div class="panel"><b>AI Seller Insights</b><p>📈 Used smartphones are currently receiving high buyer interest.</p><p>💰 Your current price is above similar listings.</p><p>Demand: <span class="bd ok">High</span></p><p>Consider adding more products in this category.</p></div></div>
+<div class="panel"><b>My listings</b><table id="ml"></table></div></section>
+<section class="view" id="msgs"><h2>Messages & notifications</h2><div class="row2"><div class="panel"><div class="mu">Never share passwords, OTPs, or sensitive financial information in chat.</div><div class="chat" id="cw"></div>
+<div style="display:flex;gap:6px"><input id="ci" placeholder="Message seller"><button class="p" onclick="send()">Send</button><button onclick="offer()">Offer</button></div><div style="margin-top:8px"><button onclick="toast('User reported')">Report</button> <button onclick="toast('User blocked')">Block</button></div></div>
+<div class="panel"><b>Notifications</b><p>💬 New message from Riya</p><p>🏷️ Offer received: ₹28,000 on Sony camera</p><p>✅ Listing approved: Study desk</p><p>📉 Wishlist price drop: Gaming laptop −₹2,000</p></div></div></section>
+<section class="view" id="admin"><h2>Admin moderation</h2><div class="stat" id="astat"></div><div class="panel"><b>Review queue</b><table id="aq"></table></div></section>
+<section class="view" id="wish"><h2>Wishlist</h2><div class="grid" id="wl"></div></section>
+</main>
+<nav class="bn" id="bn"></nav>
+<div class="modal" id="md"><div id="mb"></div></div>
+<div class="modal" id="ai"><div><b>MarketAI Assistant</b><div class="chat" id="ac"><div class="m">Ask me e.g. “used iPhone under 30000” or “laptop for coding”.</div></div><div style="display:flex;gap:6px"><input id="ai_i" placeholder="Ask MarketAI"><button class="p" onclick="ask()">Ask</button></div><button style="margin-top:8px" onclick="$('#ai').classList.remove('on')">Close</button></div></div>
+<button class="p" style="position:fixed;right:14px;bottom:90px;z-index:30;border-radius:99px" onclick="$('#ai').classList.add('on')">✨ Assistant</button>
+<div class="auth" id="auth"></div><div id="toasts"></div>
+<script src="/app.js"></script></body></html>
